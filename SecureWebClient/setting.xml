@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+  <URL>
+    <Items>
+      <Item>
+        <!-- Example with user and password -->
+        <Value>https://example.com/a;user;password</Value>
+        <DisplayName>APIエンドポイントA</DisplayName>
+      </Item>
+      <Item>
+        <Value>http://example.com/b</Value>
+        <DisplayName>WebページB</DisplayName>
+      </Item>
+    </Items>
+  </URL>
+  <Type>
+    <Items>
+      <Item>
+        <Value>API</Value>
+        <DisplayName>API通信</DisplayName>
+      </Item>
+      <Item>
+        <Value>Web</Value>
+        <DisplayName>Webサイト</DisplayName>
+      </Item>
+    </Items>
+  </Type>
+  <Detail>
+    <Types>
+      <Type name="API">
+        <Items>
+          <Item>
+            <!-- Example with POST method and JSON body -->
+            <Value>GET;/api/v1/select</Value>
+            <DisplayName>APIの詳細A1</DisplayName>
+          </Item>
+          <Item>
+            <Value>GET;/api/v1/check</Value>
+            <DisplayName>APIの詳細A2</DisplayName>
+          </Item>
+        </Items>
+      </Type>
+      <Type name="Web">
+        <Items>
+          <Item>
+            <!-- Example with POST method and JSON body -->
+            <Value>POST;/api/v1/select2;application/json;{test=0}</Value>
+            <DisplayName>Webの詳細B1</DisplayName>
+          </Item>
+          <Item>
+            <Value>POST;/api/v1/check2;application/json;{user=abc}</Value>
+            <DisplayName>Webの詳細B2</DisplayName>
+          </Item>
+        </Items>
+      </Type>
+    </Types>
+  </Detail>
+</Settings>
