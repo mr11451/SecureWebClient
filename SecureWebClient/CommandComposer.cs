@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
+using System.Net;
 
 /// <summary>
 /// HTTPリクエストのコマンド組み立てと送信を行うクラス。
@@ -76,6 +77,30 @@ public class CommandComposer
     }
 
     /// <summary>
+    /// PathプロパティをURLエスケープ文字列に変換します。
+    /// "?"が含まれる場合は"?"以降のみエスケープします。
+    /// </summary>
+    /// <returns>URLエンコードされたパス</returns>
+    public string EscapedPath(string path)
+    {
+        if (string.IsNullOrEmpty(path))
+            return string.Empty;
+
+        int qIdx = path.IndexOf('?');
+        if (qIdx < 0)
+        {
+            return WebUtility.UrlEncode(path);
+        }
+        else
+        {
+            // "?"より前はそのまま、"?"以降をエスケープ
+            string before = path[..qIdx];
+            string after = path[(qIdx + 1)..];
+            return before + "?" + WebUtility.UrlEncode(after);
+        }
+    }
+
+    /// <summary>
     /// URL文字列からユーザー名とパスワードを切り出し、メンバー変数に設定します。
     /// </summary>
     /// <param name="url">"http://example.com;user1;pass1" のような形式</param>
@@ -120,8 +145,7 @@ public class CommandComposer
         RequestUrl = baseUrl;
         if (!string.IsNullOrEmpty(Path))
         {
-            if (!RequestUrl.EndsWith("/")) RequestUrl += "/";
-            RequestUrl += Path;
+            RequestUrl += EscapedPath(Path);
         }
         return RequestUrl;
     }

@@ -11,6 +11,10 @@
         <Value>http://example.com/b</Value>
         <DisplayName>WebページB</DisplayName>
       </Item>
+      <Item>
+        <Value>https://localhost:7209;test;test</Value>
+        <DisplayName>Test Page</DisplayName>
+      </Item>
     </Items>
   </URL>
   <Type>
@@ -22,6 +26,10 @@
       <Item>
         <Value>Web</Value>
         <DisplayName>Webサイト</DisplayName>
+      </Item>
+      <Item>
+        <Value>Test</Value>
+        <DisplayName>Testサイト</DisplayName>
       </Item>
     </Items>
   </Type>
@@ -50,6 +58,19 @@
           <Item>
             <Value>POST;/api/v1/check2;application/json;{user=abc}</Value>
             <DisplayName>Webの詳細B2</DisplayName>
+          </Item>
+        </Items>
+      </Type>
+      <Type name="Test">
+        <Items>
+          <Item>
+            <!-- Example with POST method and JSON body -->
+            <Value>GET;/api/Test?abc=0&amp;def=1</Value>
+            <DisplayName>Test</DisplayName>
+          </Item>
+          <Item>
+            <Value>POST;/api/User/register;application/json;{"username":"abc","password":"abc"}</Value>
+            <DisplayName>register</DisplayName>
           </Item>
         </Items>
       </Type>
