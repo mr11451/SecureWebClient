@@ -2,8 +2,8 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Net.Http.Headers;
+using System.Net;
 
 /// <summary>
 /// HTTP通信のためのサービス実装クラス。
@@ -14,10 +14,24 @@ public class HttpService : IHttpService
 
     /// <summary>
     /// HttpServiceの新しいインスタンスを初期化します。
+    /// 証明書検証の詳細設定を追加しています。
     /// </summary>
     public HttpService()
     {
-        _httpClient = new HttpClient();
+        var handler = new HttpClientHandler();
+
+        // サーバー証明書の検証をカスタマイズ（例: 全ての証明書を許可する場合は下記を有効化）
+        // ※本番環境では必ず適切な検証を行ってください
+        // handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+
+        // 例: 独自の検証ロジック（必要に応じてカスタマイズ）
+        // handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
+        // {
+        //     // 例: 証明書のサブジェクト名をチェック
+        //     return cert.Subject.Contains("CN=trusted.example.com");
+        // };
+
+        _httpClient = new HttpClient(handler);
     }
 
     /// <summary>
